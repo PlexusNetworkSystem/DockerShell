@@ -55,7 +55,7 @@ Developed by [Abra](https://github.com/the-abra "Abra")
 - [ ] Add Development System
 - [ ] Add Development documentation
 - [ ] Add more platforms to test on
-- [x] Add auto remove files after installation.
+- [ ] Add auto remove files after installation.
 - [ ] Add more usage examples
 - [ ] Add more information about the team
 - [x] Add more information about the project
