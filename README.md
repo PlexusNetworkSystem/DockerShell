@@ -36,8 +36,8 @@ Loved :two_hearts: the project:question: You can :star2:support:star2: me and my
 <a href="https://www.patreon.com/plexusnetworksystem" target="_blank"><img src="https://raw.githubusercontent.com/PlexusNetworkSystem/PlexusNetworkSystem/main/patreon.png" alt="Patreon" height="174" width="174"></a></br>
 
 # Pictures
-![plot](https://raw.githubusercontent.com/PlexusNetworkSystem/DockerShell/main/v1.gif)
-![plot](https://raw.githubusercontent.com/PlexusNetworkSystem/DockerShell/main/dockershellv1.png)
+![plot](https://raw.githubusercontent.com/PlexusNetworkSystem/DockerShell/main/pictures/v1.gif)
+![plot](https://raw.githubusercontent.com/PlexusNetworkSystem/DockerShell/main/pictures/dockershellv1.png)
 
 
 ------------ 
