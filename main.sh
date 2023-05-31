@@ -1,45 +1,44 @@
 #!/bin/bash
 
-source src.sh
 
-#colors
-blink='\e[5m'
-cyan='\e[0;36m'
-purple='\033[0;35m'
-lightcyan='\e[96m'
-lightgreen='\e[1;32m'
-white='\e[1;37m'
-red='\e[1;31m'
-yellow='\e[1;33m'
-brown='\033[0;33m'        # Brown
-blue='\e[1;34m'
-green='\e[0;32m'
-tp='\e[0m'
+#Check permissions
+if [ "$EUID" -eq 0 ]; then
+    echo -e "${red}Please run this script as no root.${tp}"
+    exit 1
+fi
+
+#check is installed for fisrt run
+if ! [[ -d "/usr/share/dockershell.d/" ]]; then
+  echo -e "Installing dockershell... \n\tPlease type the root password for installation..."
+  sudo bash installer.sh
+else
+  if ! [[ -f /usr/bin/dockershell ]]; then
+    echo -e "Installing dockershell... \n\tPlease type the root password for installation..."
+    sudo cp /usr/share/dockershell.d/main.sh /usr/bin/dockershell
+    [[ -f /usr/bin/dockershell ]] && echo -e "You must be cp /usr/bin/dockershell.d/main.sh to /usr/bin/dockershell" && exit 1
+  fi
+fi
+
+! [[ -d "/usr/share/dockershell.d" || -f /usr/bin/dockershell ]] && echo -e "System: You have install system!"  && exit 1
 
 
-#banner
-function banner() {
-echo -ne "${cyan}"
-echo -e '
-  __   __   __        ___  __      __        ___           
- |  \ /  \ /  ` |__/ |__  |__)    /__` |__| |__  |    |    
- |__/ \__/ \__, |  \ |___ |  \    .__/ |  | |___ |___ |___
-' 
-echo -ne "${tp}"
-echo -e "${green}               Welcome the Docker Shell!\n"
-}
+#change work dir to system path
+cd /usr/share/dockershell.d
 
-banner
+source src.d/check_file.sh
 
-#shell loop
-last_value=""
-while true; do
-IFS= read -e -p "$(echo -ne "${tp}(${cyan}docker${tp})>${brown}")" value
-lock="0"
-[[ "$value" != "$last_value" ]]  && echo "docker $value" >> /home/$USER/.bash_history && history -s "$value" 
-last_value="$value" 
-lower_value="${value[@],,}"
-[[ "$lower_value" = "exit" ]] && echo -e "${red}Exiting ${cyan}Docker ${brown}Shell... ${green}Done${tp}" && exit 0 
-[[ "$lower_value" =~ ^(cls|clear) ]] && clear && banner && echo -e "${blue}Cleared!${tp}" && lock="1"
-[[ "$lock" = "0"  && "$value" != "" ]] && echo -e "${blue}" && bash -c "docker $value"
-done
+#source
+source src.d/check_req.sh
+source src.d/colors.sh
+
+
+#change work dir to home
+cd /home/$USER/
+if [[ -f /usr/share/dockershell.d/pcf ]]; then
+  source /usr/share/dockershell.d/docker.shell.sh
+:
+else
+  echo -e "${tp}Now you can use ${cyan}DockerShell${tp} typing '${green}dockershell${tp}' command on your terminal."
+  touch /usr/share/dockershell.d/pcf
+:
+fi

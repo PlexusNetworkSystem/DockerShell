@@ -42,3 +42,30 @@ Loved :two_hearts: the project:question: You can :star2:support:star2: me and my
 
 ------------ 
 Developed by [Abra](https://github.com/the-abra "Abra")
+
+
+
+ 
+
+## Todo List for readme.md
+
+- [x] Add more pictures
+- [x] Add Type and run.
+- [x] Add auto installation.
+- [ ] Add Development System
+- [ ] Add Development documentation
+- [ ] Add more platforms to test on
+- [x] Add auto remove files after installation.
+- [ ] Add more usage examples
+- [ ] Add more information about the team
+- [x] Add more information about the project
+- [x] Add more information about the developer
+- [x] Add more information about the contacts
+- [x] Add more information about the installation process
+- [x] Add more information about the software requirements
+- [x] Add more information about the donation process
+- [x] Add more information about the license
+
+- [x] Add more information about the development process
+- [*] Add more information about the testing process
+- [ ] Add more information about the contribution process

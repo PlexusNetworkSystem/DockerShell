@@ -31,4 +31,3 @@ if ! [ -x "$(command -v docker)" ]; then
 else
     echo -e "${GREEN}Docker is already installed.${NC}"
 fi
-
