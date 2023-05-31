@@ -47,17 +47,21 @@ Developed by [Abra](https://github.com/the-abra "Abra")
 
  
 
-## Todo List for readme.md
+## Todo List
 
-- [x] Add more pictures
+- [x] Add more pictures.
 - [x] Add Type and run.
 - [x] Add auto installation.
-- [ ] Add Development System
-- [ ] Add Development documentation
-- [ ] Add more platforms to test on
+- [ ] Add Development System.
+- [ ] Add Development documentation.
+- [ ] Add more platforms to test on.
 - [ ] Add auto remove files after installation.
-- [ ] Add more usage examples
-- [ ] Add more information about the team
+- [ ] Add more usage examples.
+- [ ] Add more information about the team.
+- [ ] Add version information.
+
+------------
+
 - [x] Add more information about the project
 - [x] Add more information about the developer
 - [x] Add more information about the contacts
@@ -69,3 +73,9 @@ Developed by [Abra](https://github.com/the-abra "Abra")
 - [x] Add more information about the development process
 - [ ] Add more information about the testing process
 - [ ] Add more information about the contribution process
+
+
+------------
+
+- [ ] Add hint 
+- [ ] Add teach module
