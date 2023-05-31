@@ -67,5 +67,5 @@ Developed by [Abra](https://github.com/the-abra "Abra")
 - [x] Add more information about the license
 
 - [x] Add more information about the development process
-- [*] Add more information about the testing process
+- [ ] Add more information about the testing process
 - [ ] Add more information about the contribution process
