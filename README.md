@@ -52,13 +52,17 @@ Developed by [Abra](https://github.com/the-abra "Abra")
 - [x] Add more pictures.
 - [x] Add Type and run.
 - [x] Add auto installation.
-- [ ] Add Development System.
+--------------
+- [x] Add Development System.
+- [x] Add version information.
 - [ ] Add Development documentation.
+--------------
 - [ ] Add more platforms to test on.
 - [ ] Add auto remove files after installation.
+--------------
 - [ ] Add more usage examples.
 - [ ] Add more information about the team.
-- [ ] Add version information.
+--------------
 
 ------------
 
@@ -79,3 +83,7 @@ Developed by [Abra](https://github.com/the-abra "Abra")
 
 - [ ] Add hint 
 - [ ] Add teach module
+
+
+
+

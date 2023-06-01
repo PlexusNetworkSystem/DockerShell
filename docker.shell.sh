@@ -1,11 +1,11 @@
 #banner
 function banner() {
 echo -ne "${cyan}"
-echo -e '
+echo -ne '
   __   __   __        ___  __      __        ___           
  |  \ /  \ /  ` |__/ |__  |__)    /__` |__| |__  |    |    
- |__/ \__/ \__, |  \ |___ |  \    .__/ |  | |___ |___ |___
-' 
+ |__/ \__/ \__, |  \ |___ |  \    .__/ |  | |___ |___ |___'
+echo -e "\tversion: $(cat /usr/share/dockershell/version)" 
 echo -ne "${tp}"
 echo -e "${green}               Welcome the Docker Shell!\n"
 }
@@ -22,5 +22,13 @@ last_value="$value"
 lower_value="${value[@],,}"
 [[ "$lower_value" = "exit" ]] && echo -e "${red}Exiting ${cyan}Docker ${brown}Shell... ${green}Done${tp}" && exit 0 
 [[ "$lower_value" =~ ^(cls|clear) ]] && clear && banner && echo -e "${blue}Cleared!${tp}" && lock="1"
+if [[ "$lower_value" =~ "set dev" ]]; then
+clear 
+banner
+echo -e "${blue}Dev Mod Acitve!${tp}" 
+touch /usr/share/dockershell/dev.mod 
+exit 0
+fi 
+ 
 [[ "$lock" = "0"  && "$value" != "" ]] && echo -e "${blue}" && bash -c "docker $value"
 done
