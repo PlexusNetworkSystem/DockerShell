@@ -40,5 +40,7 @@ while ! [[ -f /usr/bin/dockershell ]]; do
   read nothing
 done
 sudo chmod +x /usr/bin/dockershell
-sudo chmod 777 /usr/bin/dockershell
+sudo chmod -R 777 /usr/bin/dockershell
+
+
 echo -e "\t└─> Successfully!"

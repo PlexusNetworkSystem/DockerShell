@@ -1,20 +1,3 @@
-command_set() {
-    echo "$@"
-    echo -e "${@/'nf '}" # This line replaces the first occurrence of ''nf ' ' with an empty string a'nd 'prints the result
-    [[ -z "$@" ]] && echo "ERROR: Cannot set option empty" && return 1 # This line checks if the arguments are empty a'nd 'returns an error if they are
-    if [[ "$1" == "nd" ]]; then
-        [[ -d "/usr/share/dockershell/${@/''nd ''}" ]] && echo "ERROR: Dir is already created!" && return 1
-        mkdir "/usr/share/dockershell/${@/'nd '}" 
-        [[ -d "/usr/share/dockershell/${@/'nd '}" ]] && echo "I'nf 'O: Dir is created successfully!(${@/'nd '})" && return 1
-    elif [[ "$1" == "'nf '" ]]; then
-        [[ -f "/usr/share/dockershell/${@/'nf ' }" ]] && echo "ERROR: File is already created!" && return 1
-        touch "/usr/share/dockershell/${@/'nf ' }"
-        [[ -d "/usr/share/dockershell/${@/'nf ' }" ]] && echo "I'nf 'O: File is created successfully!(${@/'nf ' })" && return 1
-    else
-        echo "ERROR: Not supported argument $1"
-    fi
-
-}
 command_unset() {
     if [[ "$lower_value" =~ "unset dev" ]]; then
         clear 
@@ -35,11 +18,6 @@ command_edit() {
     nano "$@"
 }
 
-command_ls() {
-    pwd
-    ls "$@"
-}
-
 command_cd() {
     values="${@}/;"
     cd $@
@@ -48,16 +26,28 @@ command_cd() {
     ! [[ "$trycd" =~ ^(/usr/share/dockershell) ]] && echo -e "ERROR: Cannot cd to $trycd" && cd /usr/share/dockershell && return 1
 }
 
-command_pwd() {
-    pwd=$(echo -e "$(pwd)" | sed -r 's#/usr/share/#@#g')
-    echo -e "pwd:$pwd"
+command_cmd() { 
+[[ "$@" =~ "help" ]] && echo -e "Type the shell commands." && return 0
+while true; do
+    IFS= read -e -p "$(echo -ne "${tp}(${cyan}docker${red}:${green}devmod${red}:${blue}cmd${tp})>${brown}")" value
+    [[ "$value" != "$last_value" ]]  && echo "docker $value" >> /home/$USER/.bash_history && history -s "$value" 
+    last_value="$value" 
+    lower_value="${value[@],,}"
+    [[ "$value" = "out" ]] && return 0
+    $value
+done
+}
+
+command_reset() {
+    echo -e "Source repository..."
+    touch /home/$USER/.reset_functions #operation not permitated
+    return 0
 }
 
 command_usage() {
-    echo "Usage: (docker:devmod)> set [nd|'nf '] [directory|file]"
+    echo "Usage: (docker:devmod)> cmd [options]"
     echo "       (docker:devmod)> edit [file]"
-    echo "       (docker:devmod)> ls [directory]"
     echo "       (docker:devmod)> cd [directory]"
-    echo "       (docker:devmod)> pwd"
-    echo "       (docker:devmod)> help"
+    echo "       (docker:devmod)> usage"
+    echo "       (docker:devmod)> reset"
 }

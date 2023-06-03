@@ -20,6 +20,12 @@ banner
 #shell loop
 last_value=""
 while true; do
+    if [[ -f "/home/$USER/.reset_functions" ]]; then
+        echo -e "Done!"
+        rm /home/$USER/.reset_functions
+        source /usr/share/dockershell/development/src.d/commands.sh
+        break
+    fi
     IFS= read -e -p "$(echo -ne "${tp}(${cyan}docker${red}:${green}devmod${tp})>${brown}")" value
     lock="0"
     [[ "$value" != "$last_value" ]]  && echo "docker $value" >> /home/$USER/.bash_history && history -s "$value" 
