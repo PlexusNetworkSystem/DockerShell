@@ -24,7 +24,7 @@ while true; do
         echo -e "Done!"
         rm /home/$USER/.reset_functions
         source /usr/share/dockershell/development/src.d/commands.sh
-        break
+        continue
     fi
     IFS= read -e -p "$(echo -ne "${tp}(${cyan}docker${red}:${green}devmod${tp})>${brown}")" value
     lock="0"
