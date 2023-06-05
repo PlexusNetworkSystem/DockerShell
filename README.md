@@ -87,3 +87,7 @@ Developed by [Abra](https://github.com/the-abra "Abra")
 
 
 
+-------
+- [x] Added source command
+    -> usage source /file/path
+    -> file format like commands.sh
