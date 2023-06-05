@@ -40,7 +40,7 @@ done
 
 command_reset() {
     echo -e "Source repository..."
-    touch /home/$USER/.reset_functions #operation not permitated
+    touch /home/$USER/.reset_functions
     return 0
 }
 
@@ -48,6 +48,7 @@ command_usage() {
     echo "Usage: (docker:devmod)> cmd [options]"
     echo "       (docker:devmod)> edit [file]"
     echo "       (docker:devmod)> cd [directory]"
+    echo "       (docker:devmod)> unset dev"
     echo "       (docker:devmod)> usage"
     echo "       (docker:devmod)> reset"
 }
