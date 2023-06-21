@@ -41,6 +41,11 @@ while ! [[ -f /usr/bin/dockershell ]]; do
 done
 sudo chmod +x /usr/bin/dockershell
 sudo chmod -R 777 /usr/bin/dockershell
-
+ 
+# get dir name where the file is located without system dir names
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+#DIR=${DIR##*/} #it's give just dir name of file located in. 
+echo -e "Deleting: $DIR"
+sudo rm -rf $DIR 
 
 echo -e "\t└─> Successfully!"

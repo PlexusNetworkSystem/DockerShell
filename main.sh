@@ -31,8 +31,8 @@ cd /usr/share/dockershell
 source src.d/check_file.sh
 
 #source
-source src.d/check_req.sh
 source src.d/colors.sh
+source src.d/check_req.sh
 
 #change work dir to home
 cd /home/$USER/
