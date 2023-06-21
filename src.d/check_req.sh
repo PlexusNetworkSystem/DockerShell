@@ -9,13 +9,16 @@ echo "" > /home/$USER/.anim.txt
 
 function install_docker() {
     # Install Docker
-    sudo apt update 1> /dev/null
-    sudo apt install -y apt-transport-https ca-certificates curl software-properties-common 1> /dev/null
-    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - 1> /dev/null
-    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" 1> /dev/null
-    sudo apt update 1> /dev/null
-    sudo apt install -y docker-ce 1> /dev/null
-
+    if [[ "$1" = "second" ]]; then
+        sudo apt install docker.io -y 2> /home/$USER/dockershell.err 1> /dev/null 
+    else
+        sudo apt update 1> /dev/null
+        sudo apt install -y apt-transport-https ca-certificates curl software-properties-common 1> /dev/null
+        sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - 1> /dev/null
+        sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" 1> /dev/null
+        sudo apt update 1> /dev/null
+        sudo apt install -y docker-ce 1> /dev/null
+    fi
     # Add the current user to the docker group
     sudo usermod -aG docker $USER 1> /dev/null
 
@@ -60,9 +63,9 @@ if ! [ -x "$(command -v docker)" ]; then
             sudo echo -e "${green}Root auth success!${tp}"
             root_per_status="$?"
         done
-        install_docker 2> /home/$USER/dockershell.err &
+        install_docker first 2> /home/$USER/dockershell.err &
     else
-        install_docker 2> /home/$USER/dockershell.err &
+        install_docker first 2> /home/$USER/dockershell.err &
     fi
     
     animation "docker(docker.com)"
@@ -71,9 +74,8 @@ if ! [ -x "$(command -v docker)" ]; then
     if [[ "$(cat /home/$USER/.anim.txt)" =~ "fail" ]]; then
         echo "" > /home/$USER/dockershell.err
         echo "" > /home/$USER/.anim.txt
-        sudo apt install docker.io -y 2> /home/$USER/dockershell.err 1> /dev/null &
+        install_docker second 2> /home/$USER/dockershell.err &
         animation "docker.io"
-        sudo usermod -aG docker $USER 1> /dev/null 
     fi
 else
     echo -e "${GREEN}Docker is already installed.${NC}"
