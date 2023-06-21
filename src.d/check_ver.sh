@@ -3,13 +3,13 @@ if ! ping -c 1 google.com &> /dev/null; then
     echo "No internet connection. Version checking skipped."
     sleep 1
 else
-    echo "Checking new version..."
+    echo -ne "\r${blue}Checking ${brown}new version...${tp}"
     sleep 1
     check=$(curl -sSL https://github.com/PlexusNetworkSystem/DockerShell/raw/main/version | tr -d '%')
     current_version="$(cat /usr/share/dockershell/version)"
     
-    if [[ "$check" -gt "$current_version" ]]; then
-        echo "New version available. Updating now..."
+    if [[ "$check" != "$current_version" ]]; then
+        echo -e "${green}New version available. ${blue}Updating now...${tp}"
         
         status="none"
         while [[ "$status" = "1" ]] && echo "Process Failed, trying again"; do 
@@ -25,7 +25,7 @@ else
         bash installer.sh
         echo "DockerShell updated to version $check"
     else
-        echo "You are running the latest version of DockerShell."
+        echo -e "${tp}You are running the ${blue}latest version ${tp}of ${cyan}DockerShell${tp}."
     fi
 fi
 
