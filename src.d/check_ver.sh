@@ -18,9 +18,9 @@ else
         done
 
         sudo rm -rf /usr/share/dockershell
+        sudo rm -rf /usr/bin/dockershell
         wget https://github.com/PlexusNetworkSystem/DockerShell/archive/refs/heads/main.zip
         unzip main.zip
-        sudo rm main.zip
         cd DockerShell-main
         bash installer.sh
         echo -ne "\r"
