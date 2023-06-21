@@ -13,7 +13,7 @@ else
         
         status="none"
         while [[ "$status" = "1" ]] && echo "Process Failed, trying again"; do 
-            sudo echo -e "Root auth success!"
+            sudo echo -e "${green}Root auth success!${tp}"
             status="$?"
         done
 

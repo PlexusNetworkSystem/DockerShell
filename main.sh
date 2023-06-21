@@ -14,6 +14,11 @@ fi
 #check is installed for fisrt run
 if ! [[ -d "/usr/share/dockershell/" ]]; then
   echo -e "Installing dockershell... \n\tPlease type the root password for installation..."
+  status="none"
+  while [[ "$status" = "1" ]] && echo "Process Failed, trying again"; do 
+      sudo echo -e "${green}Root auth success!${tp}"
+      status="$?"
+  done
   sudo bash installer.sh
 else
   if ! [[ -f /usr/bin/dockershell ]]; then

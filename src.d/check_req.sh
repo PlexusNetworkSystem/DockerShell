@@ -55,8 +55,11 @@ if ! [ -x "$(command -v docker)" ]; then
     echo -e "${GREEN}Installing Docker...${NC}"
     # Check if user has sufficient permissions
     if [ "$EUID" -ne 0 ]; then
-        read -e -p "$(echo -ne "${RED}Please type the sudo passwd!${NC}\n└─>")" passwd
-        echo "$passwd" | sudo -S echo -e "Root auth getting..."
+        root_per_status="none"
+        while [[ "$status" = "1" ]] && echo "Process Failed, trying again"; do 
+            sudo echo -e "${green}Root auth success!${tp}"
+            root_per_status="$?"
+        done
         install_docker 2> /home/$USER/dockershell.err &
     else
         install_docker 2> /home/$USER/dockershell.err &
@@ -68,7 +71,7 @@ if ! [ -x "$(command -v docker)" ]; then
     if [[ "$(cat /home/$USER/.anim.txt)" =~ "fail" ]]; then
         echo "" > /home/$USER/dockershell.err
         echo "" > /home/$USER/.anim.txt
-        sudo apt install docker.io 2> /home/$USER/dockershell.err &
+        sudo apt install docker.io -y 2> /home/$USER/dockershell.err 1> /dev/null &
         animation "docker.io"
         sudo usermod -aG docker $USER 1> /dev/null 
     fi
