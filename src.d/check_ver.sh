@@ -3,6 +3,7 @@ if ! ping -c 1 google.com &> /dev/null; then
     echo "No internet connection. Version checking skipped."
     sleep 1
 else
+    cd /home/$USER/
     echo -ne "\r${blue}Checking ${brown}new version...${tp}"
     sleep 1
     check=$(curl -sSL https://github.com/PlexusNetworkSystem/DockerShell/raw/main/version | tr -d '%')
@@ -29,6 +30,7 @@ else
         echo -ne "\r"
         echo -e "${tp}You are running the ${blue}latest version ${tp}of ${cyan}DockerShell${tp}."
     fi
+    cd /usr/share/dockershell
 fi
 
 

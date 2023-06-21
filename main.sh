@@ -33,8 +33,6 @@ fi
 #change work dir to system path
 cd /usr/share/dockershell
 
-
-
 #source
 source src.d/colors.sh
 source src.d/check_ver.sh
