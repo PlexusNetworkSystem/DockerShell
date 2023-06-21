@@ -1,7 +1,10 @@
 #!/bin/bash 
 if ! ping -c 1 google.com &> /dev/null; then
     echo "No internet connection. Version checking skipped."
+    sleep 1
 else
+    echo "Checking new version..."
+    sleep 1
     check=$(curl -sSL https://github.com/PlexusNetworkSystem/DockerShell/raw/main/version | tr -d '%')
     current_version="$(cat /usr/share/dockershell/version)"
     

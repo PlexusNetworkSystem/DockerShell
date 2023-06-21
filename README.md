@@ -10,6 +10,8 @@ Or just run this commands. (Note: run with root permission)
 ```
 wget https://github.com/PlexusNetworkSystem/DockerShell/archive/refs/heads/main.zip
 unzip main.zip
+cd DockerShell-main
+bash main.sh
 sudo rm main.zip
 echo "Done."
 ```
