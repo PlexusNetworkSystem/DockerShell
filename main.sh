@@ -12,6 +12,8 @@ if [[ -f /usr/share/dockershell/dev.mod ]]; then
 fi 
 
 #check is installed for fisrt run
+! [[ -d "/usr/share/dockershell" || -f /usr/bin/dockershell ]] && echo -e "System: You have install system!"
+
 if ! [[ -d "/usr/share/dockershell/" ]]; then
   echo -e "Installing dockershell... \n\tPlease type the root password for installation..."
   sudo bash installer.sh
@@ -23,7 +25,8 @@ else
   fi
 fi
 
-! [[ -d "/usr/share/dockershell" || -f /usr/bin/dockershell ]] && echo -e "System: You have install system!"  && exit 1
+source src.d/check_ver.sh
+
 
 #change work dir to system path
 cd /usr/share/dockershell
