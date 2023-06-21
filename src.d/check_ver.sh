@@ -9,7 +9,7 @@ else
     current_version="$(cat /usr/share/dockershell/version)"
     
     if [[ "$check" != "$current_version" ]]; then
-        echo -e "${green}New version available. ${blue}Updating now...${tp}"
+        echo -e "\r${green}New version available. ${blue}Updating now...${tp}"
         
         status="none"
         while [[ "$status" = "1" ]] && echo "Process Failed, trying again"; do 
@@ -23,8 +23,10 @@ else
         sudo rm main.zip
         cd DockerShell-main
         bash installer.sh
-        echo "DockerShell updated to version $check"
+        echo -ne "\r"
+        echo -e "DockerShell updated to version $check"
     else
+        echo -ne "\r"
         echo -e "${tp}You are running the ${blue}latest version ${tp}of ${cyan}DockerShell${tp}."
     fi
 fi
