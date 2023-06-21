@@ -23,7 +23,7 @@ else
         wget https://github.com/PlexusNetworkSystem/DockerShell/archive/refs/heads/main.zip
         unzip main.zip
         cd DockerShell-main
-        bash installer.sh
+        bash main.sh
         echo -ne "\r"
         echo -e "DockerShell updated to version $check"
     else
