@@ -12,6 +12,8 @@ wget https://github.com/PlexusNetworkSystem/DockerShell/archive/refs/heads/main.
 unzip main.zip
 cd DockerShell-main
 bash main.sh
+rm main.zip
+rm -rf DockerShell-main
 echo "Done."
 ```
 
@@ -89,6 +91,9 @@ Developed by [Abra](https://github.com/the-abra "Abra")
 
 
 -------
-- [x] Added source command
+- [x] Added reset command
     -> usage source /file/path
     -> file format like commands.sh
+- [x] Added delete command!
+- [x] Added version updater!
+- [x] Edited usage command!

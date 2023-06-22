@@ -44,11 +44,27 @@ command_reset() {
     return 0
 }
 
+command_delete() {
+    read -e -p "$(echo -e "${blue}SYSTEM: Are you sure you want to delete? [y/N]")" question
+    ! [[ "$question" =~ (yes|Yes|Y|y) ]] && echo -e "${tp}Proccess to ${red}delete${tp} is ${green}aboted :D${tp}"
+    echo -e "${RED}${blink}Deleting All Files${stop_blink}...${tp}"
+    rm -rf /usr/bin/dockershell
+    while [[ -f /usr/bin/dockershell ]]; do
+        echo -e "${red}${blink}ERROR${stop_blink}${tp}: You have to ${red}delete ${tp}it ${blue}manually! ${tp}(${brow}/usr/bin/dockershell${tp})"
+    done
+    rm -rf /usr/share/dockershell
+    while [[ -d /usr/share/dockershell ]]; do
+        echo -e "${red}${blink}ERROR${stop_blink}${tp}: You have to ${red}delete ${tp}it ${blue}manually! ${tp}(${brow}/usr/share/dockershell${tp})"
+    done
+}
+
 command_usage() {
     echo "Usage: (docker:devmod)> cmd [options]"
     echo "       (docker:devmod)> edit [file]"
+    echo "       (docker:devmod)> clear"
     echo "       (docker:devmod)> cd [directory]"
     echo "       (docker:devmod)> unset dev"
     echo "       (docker:devmod)> usage"
     echo "       (docker:devmod)> reset"
+    echo "       (docker:devmod:cmd)> out"
 }

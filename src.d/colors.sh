@@ -11,3 +11,6 @@ brown='\033[0;33m'        # Brown
 blue='\e[1;34m'
 green='\e[0;32m'
 tp='\e[0m'
+
+blink='\e[5m'
+stop_blink='\e[0m'

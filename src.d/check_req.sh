@@ -43,8 +43,6 @@ function animation() {
         echo -e "${GREEN}Docker has been installed successfully.${NC}"
     else
         echo -e "${GREEN}Docker installation has been ${RED}failed ${GREEN}successfully.${NC}" 
-        blink='\e[5m'
-        stop_blink='\e[0m'
         echo -e "_______________________/${blink}${RED}ERROR: ${cyan}Docker Installation ${RED}FAILED${tp}${stop_blink}\_______________________"
         cat /home/$USER/dockershell.err
         echo -e "_________________________________________________________________________________"
