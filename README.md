@@ -14,6 +14,7 @@ cd DockerShell-main
 bash main.sh
 rm main.zip
 rm -rf DockerShell-main
+cd ..
 echo "Done."
 ```
 
