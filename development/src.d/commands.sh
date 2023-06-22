@@ -46,7 +46,7 @@ command_reset() {
 
 command_delete() {
     read -e -p "$(echo -e "${blue}SYSTEM: ${tp}Are you sure you want to ${red}delete? ${tp}[${red}y${brown}/${green}N${tp}]")" question
-    ! [[ "$question" =~ (yes|Yes|Y|y) ]] && echo -e "${tp}Proccess to ${red}delete${tp} is ${green}aboted :D${tp}" && return 0
+    ! [[ "$question" =~ (yes|Yes|Y|y) ]] && echo -e "${tp}Process to ${red}delete${tp} is ${green}aborted :D${tp}" && return 0
     echo -e "${RED}${blink}Deleting All Files${stop_blink}...${tp}"
     rm -rf /usr/bin/dockershell
     while [[ -f /usr/bin/dockershell ]]; do
