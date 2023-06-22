@@ -60,6 +60,7 @@ command_delete() {
 
 command_usage() {
     echo "Usage: (docker:devmod)> cmd [options]"
+    echo "       (docker:devmod)> delete"
     echo "       (docker:devmod)> edit [file]"
     echo "       (docker:devmod)> clear"
     echo "       (docker:devmod)> cd [directory]"
