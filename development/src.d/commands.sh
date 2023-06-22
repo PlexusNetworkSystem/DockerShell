@@ -56,7 +56,7 @@ command_delete() {
     rm -rf /usr/share/dockershell
     while [[ -d /usr/share/dockershell ]]; do
         echo -e "${red}${blink}ERROR${stop_blink}${tp}: You have to ${red}delete ${tp}it ${blue}via root! ${tp}(${brow}/usr/share/dockershell${tp})"
-        sudo rm -rf /usr/bin/dockershell
+        sudo rm -rf /usr/share/dockershell
     done
     echo -e "${blue}SYSTEM: ${tp}Good bye :("
 }
