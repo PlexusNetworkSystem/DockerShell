@@ -45,17 +45,20 @@ command_reset() {
 }
 
 command_delete() {
-    read -e -p "$(echo -e "${blue}SYSTEM: Are you sure you want to delete? [y/N]")" question
-    ! [[ "$question" =~ (yes|Yes|Y|y) ]] && echo -e "${tp}Proccess to ${red}delete${tp} is ${green}aboted :D${tp}"
+    read -e -p "$(echo -e "${blue}SYSTEM: ${tp}Are you sure you want to ${red}delete? ${tp}[${red}y${brown}/${green}N${tp}]")" question
+    ! [[ "$question" =~ (yes|Yes|Y|y) ]] && echo -e "${tp}Proccess to ${red}delete${tp} is ${green}aboted :D${tp}" && return 0
     echo -e "${RED}${blink}Deleting All Files${stop_blink}...${tp}"
     rm -rf /usr/bin/dockershell
     while [[ -f /usr/bin/dockershell ]]; do
-        echo -e "${red}${blink}ERROR${stop_blink}${tp}: You have to ${red}delete ${tp}it ${blue}manually! ${tp}(${brow}/usr/bin/dockershell${tp})"
+        echo -e "${red}${blink}ERROR${stop_blink}${tp}: You have to ${red}delete ${tp}it ${blue}via root! ${tp}(${brow}/usr/bin/dockershell${tp})"
+        sudo rm -rf /usr/bin/dockershell
     done
     rm -rf /usr/share/dockershell
     while [[ -d /usr/share/dockershell ]]; do
-        echo -e "${red}${blink}ERROR${stop_blink}${tp}: You have to ${red}delete ${tp}it ${blue}manually! ${tp}(${brow}/usr/share/dockershell${tp})"
+        echo -e "${red}${blink}ERROR${stop_blink}${tp}: You have to ${red}delete ${tp}it ${blue}via root! ${tp}(${brow}/usr/share/dockershell${tp})"
+        sudo rm -rf /usr/bin/dockershell
     done
+    echo -e "${blue}SYSTEM: ${tp}Good bye :("
 }
 
 command_usage() {
