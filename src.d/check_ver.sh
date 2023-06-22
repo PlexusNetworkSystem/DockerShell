@@ -24,9 +24,9 @@ else
         unzip main.zip
         cd DockerShell-main
         bash main.sh
+        cd ..
         rm main.zip
         rm -rf DockerShell-main
-        cd ..
         echo -ne "\r"
         echo -e "DockerShell updated to version $check"
     else
