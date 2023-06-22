@@ -12,9 +12,9 @@ wget https://github.com/PlexusNetworkSystem/DockerShell/archive/refs/heads/main.
 unzip main.zip
 cd DockerShell-main
 bash main.sh
+cd ..
 rm main.zip
 rm -rf DockerShell-main
-cd ..
 echo "Done."
 ```
 
