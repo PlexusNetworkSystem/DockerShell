@@ -6,7 +6,7 @@
 
 # :arrow_double_down: Installation :arrow_double_down:
 First, Install the zip file. After unzip the .zip formatted file<br/>
-Or just run this commands. (Note: run with root permission)
+Or just run this commands. (Note: run without root permission)
 ```
 wget https://github.com/PlexusNetworkSystem/DockerShell/archive/refs/heads/main.zip
 unzip main.zip
