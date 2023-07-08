@@ -87,7 +87,8 @@ Developed by [Abra](https://github.com/the-abra "Abra")
 
 - [ ] Add hint 
 - [ ] Add teach module
-
+- [ ] Add create new img command
+- [ ] Add Auto Complate
 
 
 
