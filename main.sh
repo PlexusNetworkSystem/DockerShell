@@ -38,6 +38,7 @@ source src.d/colors.sh
 source src.d/check_ver.sh
 source src.d/check_file.sh
 source src.d/check_req.sh
+source src.d/check_perm.sh
 
 #change work dir to home
 cd /home/$USER/
