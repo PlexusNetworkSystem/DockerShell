@@ -8,6 +8,10 @@ if [ "$EUID" -ne 0 ]; then
     exit 1
 fi
 
+if [[ -f pcf ]];
+  rm pcf
+fi
+
 source src.d/check_file.sh
 
 echo -e "Instaling system..."
