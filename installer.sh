@@ -8,7 +8,7 @@ if [ "$EUID" -ne 0 ]; then
     exit 1
 fi
 
-if [[ -f pcf ]];
+if [[ -f pcf ]]; then
   rm pcf
 fi
 
