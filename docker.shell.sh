@@ -33,23 +33,12 @@ while true; do
   array_data=($value)
   cmd_data="${array_data[0]}"
   params_data="${array_data[@]/$cmd_data}"
-  if [[ "$cmd_data" = "source" ]]; then
-    if [[ -f ${array_data[1]} ]]; then
-      if [[ "$(cat $params_data | head -n 1)" =~ "#command_pcf" ]]; then
-        echo -e "${blue}INFO: ${green}File found ${tp}and ${brown}Sourced ${tp}(${array_data[1]})."
-        source $params_data
-      else
-        echo -e "${red}ERROR: ${blue} It is not a sourcable file${tp}"
-        echo -e "Set #command_pcf to first line file for it is true file"
-      fi
-    else
-      echo -e "${red}ERROR: ${blue} File not found!${tp}(${array_data[1]})"
-    fi
-  else
+
+
     if type command_$cmd_data &> /dev/null 2>&1; then
       command_$cmd_data $params_data
     else
       [[ "$value" != "" ]] && echo -e "${blue}" && bash -c "docker $value"
     fi
-  fi
+
 done

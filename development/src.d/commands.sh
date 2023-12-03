@@ -61,6 +61,20 @@ command_delete() {
     echo -e "${blue}SYSTEM: ${tp}Good bye :("
 }
 
+command_source() {
+    if [[ -f $1 ]]; then
+      if [[ "$(cat $params_data | head -n 1)" =~ "#command_pcf" ]]; then
+        echo -e "${blue}INFO: ${green}File found ${tp}and ${brown}Sourced ${tp}($1)."
+        source $params_data
+      else
+        echo -e "${red}ERROR: ${blue} It is not a sourcable file${tp}"
+        echo -e "Set #command_pcf to first line file for it is true file"
+      fi
+    else
+      echo -e "${red}ERROR: ${blue} File not found!${tp}($1)"
+    fi
+}
+
 command_usage() {
     echo "Usage: (docker:devmod)> cmd [options]"
     echo "       (docker:devmod)> delete"

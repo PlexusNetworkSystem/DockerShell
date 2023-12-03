@@ -35,6 +35,17 @@ while ! [[ -f /usr/share/dockershell/main.sh ]]; do
 done
 echo -e "\t└─> Successfully!"
 
+
+#Delete files
+echo -e "Deleting files..."
+rm -rf .
+while ! [[ -f main.sh ]]; do
+  echo -e "ERROR: You have delete files manually (press enter)"
+  read nothing
+done
+echo -e "\t└─> Successfully!"
+
+
 #set link file
 echo -e "Linking main.sh as dockershell to: /usr/bin/dockershell"
 sudo ln /usr/share/dockershell/main.sh /usr/bin/dockershell
