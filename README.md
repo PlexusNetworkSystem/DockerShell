@@ -88,8 +88,8 @@ Developed by [Abra](https://github.com/the-abra "Abra")
 - [ ] Add hint 
 - [ ] Add teach module
 - [ ] Add create new img command
-- [ ] Add create list command
-- [ ] Add create run command
+- [x] Add create list command
+- [x] Add create run command
 - [ ] Add Auto Complate
 
 
