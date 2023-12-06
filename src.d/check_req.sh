@@ -8,6 +8,7 @@ NC='\033[0m' # No color
 echo "" > /tmp/.anim.txt 
 
 anim_start "Checking reqs" &
+sleep 1
 function install_docker() {
     # Install Docker
     sudo apt update 1> /dev/null
