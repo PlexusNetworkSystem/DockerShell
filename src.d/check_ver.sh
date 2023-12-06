@@ -46,7 +46,7 @@ else
     if [[ "$(cat /tmp/dockershell_version.txt | tr -d '%')" != "$(cat /usr/share/dockershell/version)" ]]; then
         anim_stop
         write_update_code
-        echo -e "\r${green}New version available. ${blue}Need sudo for update${tp}"
+        echo -e "${green}New version available. ${blue}Need sudo for update${tp}"
         sudo bash -c "bash /tmp/dockershell_update.sh 1> /tmp/ds_update_err.rtx 2> /dev/null &"
         anim_start "Updating now" &
         check_update 
