@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#this file has special animation
 # Color codes
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -66,6 +66,4 @@ if ! [ -x "$(command -v docker)" ]; then
         echo -e "Docker Installation ${blink}${RED}FAILED${tp}${stop_blink}"
         exit 1
     fi
-else
-    echo -e "${GREEN}Docker is already installed.${NC}"
 fi
