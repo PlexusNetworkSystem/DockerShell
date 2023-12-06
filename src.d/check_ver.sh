@@ -7,7 +7,7 @@ if ! ping -c 1 google.com &> /dev/null; then
 else
     anim_change "Checking new version"
     #echo -ne "\r${blue}Checking ${brown}new version...${tp}"
-    curl -sSL https://github.com/PlexusNetworkSystem/DockerShell/raw/main/version -o /tmp/dockershell_version.txt &> /dev/null
+    curl -sSL https://github.com/PlexusNetworkSystem/DockerShell/raw/main/version -o /tmp/dockershell_version.txt
     
     cd /home/$USER/  
     if [[ "$(cat /tmp/dockershell_version.txt | tr -d '%')" != "$(cat /usr/share/dockershell/version)" ]]; then
