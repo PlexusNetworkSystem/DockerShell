@@ -3,8 +3,7 @@ anim_start "Checking connection" &
 sleep 0.5
 
 
-function write_update_code() {
-    echo -e ```
+function update() {
         echo "true" > /tmp/ds_upd_val.txt
         sudo rm -rf /usr/share/dockershell
         sudo rm -rf /usr/bin/dockershell
@@ -16,11 +15,10 @@ function write_update_code() {
         rm main.zip
         rm -rf DockerShell-main
         echo "false" > /tmp/ds_upd_val.txt
-        ``` > /tmp/dockershell_update.sh
 }
 function check_update() {
     while $(cat /tmp/ds_upd_val.txt); do
-    sleep 0.1
+    sleep 0.2
     done
     anim_stop
     if [[ -d /usr/share/dockershell ]]; then
@@ -41,13 +39,12 @@ else
     anim_change "Checking new version"
     #echo -ne "\r${blue}Checking ${brown}new version...${tp}"
     curl -sSL https://github.com/PlexusNetworkSystem/DockerShell/raw/main/version -o /tmp/dockershell_version.txt &> /dev/null
-    
     cd /home/$USER/  
     if [[ "$(cat /tmp/dockershell_version.txt | tr -d '%')" != "$(cat /usr/share/dockershell/version)" ]]; then
         anim_stop
-        write_update_code
         echo -e "${green}New version available. ${blue}Need sudo for update${tp}"
-        sudo bash -c "bash /tmp/dockershell_update.sh 1> /tmp/ds_update_err.rtx 2> /dev/null &"
+        sudo echo -ne "\r validating..."
+        update &> /dev/null &
         anim_start "Updating now" &
         check_update 
     fi
