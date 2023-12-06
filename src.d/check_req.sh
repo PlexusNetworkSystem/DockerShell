@@ -7,7 +7,7 @@ NC='\033[0m' # No color
 
 echo "" > /tmp/.anim.txt 
 
-anim_start "Checking reqs"
+anim_start "Checking reqs" &
 function install_docker() {
     # Install Docker
     sudo apt update 1> /dev/null
@@ -69,7 +69,7 @@ if ! [ -x "$(command -v docker)" ]; then
         echo -e "Docker Installation ${blink}${RED}FAILED${tp}${stop_blink}"
         exit 1
     fi
-    anim_start "Checking permission" # animation stopped restarting
+    anim_start "Checking permission" & # animation stopped restarting
     sleep 1
 fi
 anim_change "Checking permission" # req system passed changin value of animation
