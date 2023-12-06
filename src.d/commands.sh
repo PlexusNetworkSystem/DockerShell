@@ -1,9 +1,11 @@
 #command_pcf
 function command_help() {
     echo -e "${green}Usage of help${tp}"
-    echo -e "help -> display this help message"
-    echo -e "list -> list images or containers"
-    echo -e "run -> run a container"
+    echo -e "help    -> display this help message"
+    echo -e "help -a -> display All docker commands"
+    echo -e "list    -> list images or containers"
+    echo -e "run     -> run a container"
+    [[ $1 =~ (-a|all) ]] && echo -e "--------------------------------------" && docker help
 }
 
 function command_list() {

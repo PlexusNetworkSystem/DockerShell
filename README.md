@@ -90,7 +90,7 @@ Developed by [Abra](https://github.com/the-abra "Abra")
 - [ ] Add create new img command
 - [x] Add create list command
 - [x] Add create run command
-- [ ] Add Auto Complate
+- [ ] Add Auto Complete
 
 
 

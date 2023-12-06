@@ -35,6 +35,8 @@ cd /usr/share/dockershell
 
 #source
 source src.d/colors.sh
+source src.d/anim.sh
+#-----------------------
 source src.d/check_ver.sh
 source src.d/check_file.sh
 source src.d/check_req.sh

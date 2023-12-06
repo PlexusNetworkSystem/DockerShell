@@ -1,23 +1,35 @@
 #!/bin/bash 
+anim_start "Checking connection" &
 if ! ping -c 1 google.com &> /dev/null; then
+    anim_stop
     echo "No internet connection. Version checking skipped."
-    sleep 1
 else
-    cd /home/$USER/
-    echo -ne "\r${blue}Checking ${brown}new version...${tp}"
-    sleep 1
-    check=$(curl -sSL https://github.com/PlexusNetworkSystem/DockerShell/raw/main/version | tr -d '%')
+    anim_change "Checking new version"
+    #echo -ne "\r${blue}Checking ${brown}new version...${tp}"
+    curl -sSL https://github.com/PlexusNetworkSystem/DockerShell/raw/main/version -o /tmp/dockershell_version.txt
+    check=$(cat /tmp/dockershell_version.txt | tr -d '%')
     current_version="$(cat /usr/share/dockershell/version)"
+    cd /home/$USER/  
     
     if [[ "$check" != "$current_version" ]]; then
-        echo -e "\r${green}New version available. ${blue}Updating now...${tp}"
-        
-        status="none"
-        while [[ "$status" = "1" ]] && echo "Process Failed, trying again"; do 
-            sudo echo -e "${green}Root auth success!${tp}"
-            status="$?"
-        done
+        anim_stop
+        write_update_code
+        echo -e "\r${green}New version available. ${blue}Need sudo for update${tp}"
+        sudo bash -c "bash /tmp/dockershell_update.sh 1> /tmp/ds_update_err.rtx 2> /dev/null" &
+        anim_start "Updating now" &
+        check_update 
+    else
+        # anim activeted no output need
+        #echo -e "${tp}You are running the ${blue}latest version ${tp}of ${cyan}DockerShell${tp}."
+    fi
+    cd /usr/share/dockershell
+fi
 
+
+
+function write_update_code() {
+    echo -e ```
+        echo "true" > /tmp/ds_upd_val.txt
         sudo rm -rf /usr/share/dockershell
         sudo rm -rf /usr/bin/dockershell
         wget https://github.com/PlexusNetworkSystem/DockerShell/archive/refs/heads/main.zip
@@ -27,14 +39,20 @@ else
         cd ..
         rm main.zip
         rm -rf DockerShell-main
-        echo -ne "\r"
-        echo -e "DockerShell updated to version $check"
+        echo "false" > /tmp/ds_upd_val.txt
+        ``` > /tmp/dockershell_update.sh
+}
+function check_update() {
+    while $(cat /tmp/ds_upd_val.txt); do
+    done
+    anim_stop
+    if [[ -d /usr/share/dockershell ]]; then
+        echo -e "! DockerShell updated to version $check !"
+        anim_start "Switching file check"
     else
-        echo -ne "\r"
-        echo -e "${tp}You are running the ${blue}latest version ${tp}of ${cyan}DockerShell${tp}."
+        echo -e "${red} Has error an accoured!${tp}"
+        cat /tmp/ds_update_err.rtx
+        exit 1
     fi
-    cd /usr/share/dockershell
-fi
-
-
-
+    sleep 1
+}
