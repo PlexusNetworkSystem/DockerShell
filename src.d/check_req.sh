@@ -7,6 +7,7 @@ NC='\033[0m' # No color
 
 echo "" > /tmp/.anim.txt 
 
+anim_start "Checking reqs"
 function install_docker() {
     # Install Docker
     sudo apt update 1> /dev/null
@@ -45,6 +46,8 @@ function animation() {
 
 # Check if Docker is already installed
 if ! [ -x "$(command -v docker)" ]; then
+    sleep 1
+    anim_stop
     echo -e "${RED}Docker is not installed.${NC}"
     echo -e "${GREEN}Installing Docker...${NC}"
     # Check if user has sufficient permissions
@@ -54,9 +57,9 @@ if ! [ -x "$(command -v docker)" ]; then
             sudo echo -e "${green}Root auth success!${tp}"
             root_per_status="$?"
         done
-        install_docker 2> /tmp/dockershell.err &
+        install_docker 2> /tmp/dockershell.err 1> /dev/null &
     else
-        install_docker 2> /tmp/dockershell.err &
+        install_docker 2> /tmp/dockershell.err 1> /dev/null &
     fi
     
     animation "docker.io"
@@ -66,4 +69,8 @@ if ! [ -x "$(command -v docker)" ]; then
         echo -e "Docker Installation ${blink}${RED}FAILED${tp}${stop_blink}"
         exit 1
     fi
+    anim_start "Checking permission" # animation stopped restarting
+    sleep 1
 fi
+anim_change "Checking permission" # req system passed changin value of animation
+sleep 1

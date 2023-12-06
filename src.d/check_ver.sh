@@ -5,25 +5,24 @@ sleep 0.5
 
 function update() {
         echo "true" > /tmp/ds_upd_val.txt
-        sudo rm -rf /usr/share/dockershell
-        sudo rm -rf /usr/bin/dockershell
+        sudo rm -rf /usr/share/dockershell/*
         wget https://github.com/PlexusNetworkSystem/DockerShell/archive/refs/heads/main.zip
         unzip main.zip
-        cd DockerShell-main
-        bash main.sh
-        cd ..
+        sudo chmod 777 /usr/share/dockershell
+        sudo cp -r DockerShell-main/* /usr/share/dockershell/
         rm main.zip
         rm -rf DockerShell-main
         echo "false" > /tmp/ds_upd_val.txt
 }
 function check_update() {
-    while $(cat /tmp/ds_upd_val.txt); do
+    while [[ "$(cat /tmp/ds_upd_val.txt)" == "true" ]]; do
     sleep 0.2
     done
     anim_stop
     if [[ -d /usr/share/dockershell ]]; then
-        echo -e "! DockerShell updated to version $check !"
+        echo -e "! DockerShell updated to version $(cat /usr/share/dockershell/version) !"
         anim_start "Switching file check"
+        sleep 0.2
     else
         echo -e "${red} Has error an accoured!${tp}"
         cat /tmp/ds_update_err.rtx
@@ -43,9 +42,10 @@ else
     if [[ "$(cat /tmp/dockershell_version.txt | tr -d '%')" != "$(cat /usr/share/dockershell/version)" ]]; then
         anim_stop
         echo -e "${green}New version available. ${blue}Need sudo for update${tp}"
-        sudo echo -ne "\r validating..."
-        update &> /dev/null &
+        sudo echo -e "validating..."
         anim_start "Updating now" &
+        sleep 0.2
+        update &> /dev/null &
         check_update 
     fi
     cd /usr/share/dockershell

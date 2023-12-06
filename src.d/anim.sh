@@ -1,5 +1,5 @@
 # load animation 
-echo "true" > /tmp/dockershell_anim_status.txt
+
 anim_label=("|" "/" "—" "\\\\")
 
 function anim_line_clear() {
@@ -7,6 +7,7 @@ function anim_line_clear() {
 }
 
 function anim_start() {
+    echo "true" > /tmp/dockershell_anim_status.txt
     echo "$@" > /tmp/dockershell_anim_value.txt
     while $(cat /tmp/dockershell_anim_status.txt); do
     value="$(cat /tmp/dockershell_anim_value.txt)"
