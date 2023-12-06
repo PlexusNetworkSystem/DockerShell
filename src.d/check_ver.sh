@@ -9,7 +9,7 @@ function update() {
         wget https://github.com/PlexusNetworkSystem/DockerShell/archive/refs/heads/main.zip
         unzip main.zip
         sudo cp -r DockerShell-main/* /usr/share/dockershell/
-        sudo chmod 777 /usr/share/dockershell
+        sudo chmod -R 777 /usr/share/dockershell
         rm main.zip
         rm -rf DockerShell-main
         echo "false" > /tmp/ds_upd_val.txt
@@ -22,7 +22,6 @@ function check_update() {
     if [[ -d /usr/share/dockershell ]]; then
         echo -e "! DockerShell updated to version $(cat /usr/share/dockershell/version) !"
         anim_start "Switching file check" &
-        sleep 0.2
     else
         echo -e "${red} Has error an accoured!${tp}"
         cat /tmp/ds_update_err.rtx
