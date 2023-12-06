@@ -1,26 +1,6 @@
 #!/bin/bash 
 anim_start "Checking connection" &
 sleep 0.5
-if ! ping -c 1 google.com &> /dev/null; then
-    anim_stop
-    echo "No internet connection. Version checking skipped."
-else
-    anim_change "Checking new version"
-    #echo -ne "\r${blue}Checking ${brown}new version...${tp}"
-    curl -sSL https://github.com/PlexusNetworkSystem/DockerShell/raw/main/version -o /tmp/dockershell_version.txt
-    
-    cd /home/$USER/  
-    if [[ "$(cat /tmp/dockershell_version.txt | tr -d '%')" != "$(cat /usr/share/dockershell/version)" ]]; then
-        anim_stop
-        write_update_code
-        echo -e "\r${green}New version available. ${blue}Need sudo for update${tp}"
-        sudo bash -c "bash /tmp/dockershell_update.sh 1> /tmp/ds_update_err.rtx 2> /dev/null" &
-        anim_start "Updating now" &
-        check_update 
-    fi
-    cd /usr/share/dockershell
-fi
-
 
 
 function write_update_code() {
@@ -53,3 +33,26 @@ function check_update() {
     fi
     sleep 1
 }
+
+if ! ping -c 1 google.com &> /dev/null; then
+    anim_stop
+    echo "No internet connection. Version checking skipped."
+else
+    anim_change "Checking new version"
+    #echo -ne "\r${blue}Checking ${brown}new version...${tp}"
+    curl -sSL https://github.com/PlexusNetworkSystem/DockerShell/raw/main/version -o /tmp/dockershell_version.txt &> /dev/null
+    
+    cd /home/$USER/  
+    if [[ "$(cat /tmp/dockershell_version.txt | tr -d '%')" != "$(cat /usr/share/dockershell/version)" ]]; then
+        anim_stop
+        write_update_code
+        echo -e "\r${green}New version available. ${blue}Need sudo for update${tp}"
+        sudo bash -c "bash /tmp/dockershell_update.sh 1> /tmp/ds_update_err.rtx 2> /dev/null &"
+        anim_start "Updating now" &
+        check_update 
+    fi
+    cd /usr/share/dockershell
+fi
+
+
+

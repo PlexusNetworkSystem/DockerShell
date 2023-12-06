@@ -3,7 +3,7 @@ echo "true" > /tmp/dockershell_anim_status.txt
 anim_label=("|" "/" "—" "\\\\")
 
 function anim_line_clear() {
-    echo -ne "\r                          "
+    echo -e "\r                          "
 }
 
 function anim_start() {
