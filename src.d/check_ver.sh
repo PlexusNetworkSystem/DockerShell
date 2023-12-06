@@ -10,6 +10,7 @@ function update() {
         unzip main.zip
         sudo cp -r DockerShell-main/* /usr/share/dockershell/
         sudo chmod -R 777 /usr/share/dockershell
+        touch /usr/share/dockershell/pcf
         rm main.zip
         rm -rf DockerShell-main
         echo "false" > /tmp/ds_upd_val.txt
