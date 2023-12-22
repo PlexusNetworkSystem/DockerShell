@@ -35,6 +35,7 @@ if ! [[ -f /tmp/dockershell.status ]]; then #if system running first time for ne
   source src.d/check_file.sh
   source src.d/check_req.sh
   source src.d/check_perm.sh
+  echo -e "\r${tp}System is ready [${green}✓${tp}]         "
   echo "System checked" > /tmp/dockershell.status 
 else
   echo -e "${tp}Check skipped...."
