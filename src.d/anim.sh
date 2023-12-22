@@ -5,18 +5,20 @@ anim_label=("|" "/" "—" "\\\\")
 function anim_line_clear() {
     echo -e "\r                          "
 }
-
+function animdone() {
+    echo -e "\r${tp}System is ready [${green}✓${tp}]         "
+}
 function anim_start() {
     echo "true" > /tmp/dockershell_anim_status.txt
     echo "$@" > /tmp/dockershell_anim_value.txt
     while $(cat /tmp/dockershell_anim_status.txt); do
     value="$(cat /tmp/dockershell_anim_value.txt)"
         for i in "${anim_label[@]}"; do
-            echo -ne "\r${brown}$value ${blue}[${green}$i${blue}]${tp}      "
+            echo -ne "\r${brown}$value ${blue}[${green}$i${blue}]${tp}           "
             sleep 0.1
         done
     done
-    anim_line_clear
+    animdone
 }
 
 function anim_stop() {

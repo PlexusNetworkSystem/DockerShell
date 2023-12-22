@@ -7,7 +7,7 @@ NC='\033[0m' # No color
 
 echo "" > /tmp/.anim.txt 
 
-anim_start "Checking reqs" &
+anim_change "Checking reqs"
 sleep 1
 function install_docker() {
     # Install Docker

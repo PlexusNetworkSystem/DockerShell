@@ -23,19 +23,22 @@ else
   fi
 fi
 
-
-
 #change work dir to system path
 cd /usr/share/dockershell
-
-#source
 source src.d/colors.sh
-source src.d/anim.sh
-#-----------------------
-source src.d/check_ver.sh
-source src.d/check_file.sh
-source src.d/check_req.sh
-source src.d/check_perm.sh
+
+if ! [[ -f /tmp/dockershell.status ]]; then #if system running first time for new session
+  #source
+  source src.d/anim.sh
+  #-----------------------
+  source src.d/check_ver.sh
+  source src.d/check_file.sh
+  source src.d/check_req.sh
+  source src.d/check_perm.sh
+  echo "System checked" > /tmp/dockershell.status 
+else
+  echo -e "${tp}Check skipped...."
+fi
 
 #change work dir to home
 cd /home/$USER/
@@ -47,5 +50,4 @@ else
   touch /usr/share/dockershell/pcf
 :
 fi
-
-
+exit 0

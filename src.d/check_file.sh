@@ -12,6 +12,4 @@ check_files "main.sh"
 check_dir "src.d/"
 check_files "src.d/check_req.sh"
 check_files "src.d/colors.sh"
-
-sleep 1
-anim_stop #going to check_req file
+#going to check_req file

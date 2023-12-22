@@ -11,6 +11,7 @@ echo -e "\tversion: $(cat /usr/share/dockershell/version)"
 echo -ne "${tp}"
 echo -e "${green}               Welcome the Docker Shell!\n"
 }
+
 banner
 #shell loop
 last_value=""
