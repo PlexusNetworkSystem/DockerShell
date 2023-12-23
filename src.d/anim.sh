@@ -15,6 +15,7 @@ function anim_start() {
             sleep 0.1
         done
     done
+    anim_line_clear
 }
 
 function anim_stop() {
