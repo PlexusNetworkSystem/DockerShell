@@ -37,12 +37,14 @@ function command_run() {
         return 0
         :
     else
-        ! [ "$(docker ps -aq -f name=$1)" ] && docker run $@ && return 0 
+        if ! [[ "$(docker ps -aq -f name=$1)" || "$(docker ps -aq -f id=$1)" ]]; then
+            docker run $@ && return 0 
+        fi
         #Is the first parameter not existing as container it is possibly an paramter command of docker run. Also it is not an parameter and not existing container, docker run command returning error automatically
         :
     fi
 
-    if [ "$(docker ps -aq -f status=running -f name=$1)" ]; then
+    if [ "$(docker ps -aq -f status=running -f name=$1)" ] || [ "$(docker ps -aq -f status=running -f id=$1)" ]; then
         if [[ "$2" =~ (-c|--console) ]]; then
             shell="sh"
             if docker exec -i $1 sh -c '[ -x /bin/bash ]'; then
@@ -63,7 +65,9 @@ function command_run() {
             return 0
         else
             docker start $1
-            [ "$(docker ps -aq -f status=running -f name=$1)" ] && echo -e "${green}RUNNING ${tp}: ${blue}$1${tp} $(docker ps | grep $1 | awk '{print $1}')"
+            if [ "$(docker ps -aq -f status=running -f name=$1)" ] || [ "$(docker ps -aq -f status=running -f id=$1)" ]; then
+                echo -e "${green}RUNNING ${tp}: ${blue}$1${tp} $(docker ps | grep $1 | awk '{print $1}')"
+            fi
             return 0
         fi
     fi
