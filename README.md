@@ -1,8 +1,6 @@
 
 # :eight_spoked_asterisk: Docker Shell :eight_spoked_asterisk:
-<center>
 ![plot](https://raw.githubusercontent.com/PlexusNetworkSystem/DockerShell/main/pictures/dockershell.png)
-</center>
 ### Simple docker shell for linux debian based oses
 # :computer: Software Requirements :computer:
 ### Docker - Bash  
