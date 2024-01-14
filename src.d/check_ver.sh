@@ -43,11 +43,7 @@ else
         anim_stop
         echo -e "${green}New version available. ${blue}Need sudo for update${tp}"
         function setsudo(){
-            if [[ -f /usr/bin/pkexec ]]; then
-                pkexec touch /tmp/ds_update_sudo.check &> /dev/null
-            else
-                sudo touch /tmp/ds_update_sudo.check
-            fi
+            sudo touch /tmp/ds_update_sudo.check
         }
         setsudo
         echo -e "Validating..."
