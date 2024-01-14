@@ -42,7 +42,22 @@ else
     if [[ "$(cat /tmp/dockershell_version.txt | tr -d '%')" != "$(cat /usr/share/dockershell/version)" ]]; then
         anim_stop
         echo -e "${green}New version available. ${blue}Need sudo for update${tp}"
-        sudo echo -e "validating..."
+        function setsudo(){
+            if [[ -f /usr/bin/pkexec ]]; then
+                pkexec touch /tmp/ds_update_sudo.check &> /dev/null
+            else
+                sudo touch /tmp/ds_update_sudo.check
+            fi
+        }
+        setsudo
+        echo -e "Validating..."
+        sleep 0.2
+        while ! [[ -f /tmp/ds_update_sudo.check ]]; do
+            echo -e "ERROR: Can't provided sudo permission!"
+            setsudo
+            echo -e "Validating..."
+            sleep 0.2
+        done
         anim_start "Updating now" &
         sleep 0.2
         update &> /dev/null &
