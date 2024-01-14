@@ -1,11 +1,32 @@
 #command_pcf
 function command_help() {
-    echo -e "${green}Usage of help${tp}"
-    echo -e "help    -> display this help message"
-    echo -e "help -a -> display All docker commands"
-    echo -e "list    -> list images or containers"
-    echo -e "run     -> run a container"
-    [[ $1 =~ (-a|all) ]] && echo -e "--------------------------------------" && docker help
+    if [[ -z $1 ]]; then
+        echo -e "${green}Usage of help${tp}"
+        echo -e "help       -> display this help message"
+        echo -e "help -a    -> display All docker commands"
+        echo -e "help <cmd> -> display usage"
+        echo -e "list       -> list images or containers"
+        echo -e "run        -> run a container"  
+    else
+        if [[ $1 =~ (-a|all) ]]; then
+            less /usr/share/dockershell/src.d/dockerhelp.src
+        else
+            common_commands=("run" "exec" "ps" "build" "pull" "push" "images" "login" "logout" "search" "version" "info")
+            management_commands=("builder" "container" "context" "image" "manifest" "network" "plugin" "system" "trust" "volume")
+            swarm_commands=("swarm")
+            additional_commands=("attach" "commit" "cp" "create" "diff" "events" "export" "history" "import" "inspect" "kill" "load" "logs" "pause" "port" "rename" "restart" "rm" "rmi" "save" "start" "stats" "stop" "tag" "top" "unpause" "update" "wait")
+            if [[ " ${common_commands[@]} " =~ "$1" ]]; then
+                docker $1 --help
+            elif [[ " ${management_commands[@]} " =~ "$1" ]]; then
+                docker $1 --help
+            elif [[ " ${swarm_commands[@]} " =~ "$1" ]]; then
+                docker $1 --help
+            elif [[ " ${additional_commands[@]} " =~ "$1" ]]; then
+                docker $1 --help 
+            fi
+        fi
+    fi
+
 }
 
 function command_list() {
